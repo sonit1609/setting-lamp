@@ -123,6 +123,33 @@ find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +;
 chown -R :www-data . # Ubuntu;
 chmod u+x bin/magento;
 ````
+#### Setup local
+  * go to /etc/apache2/sites-available
+  * create new file dev.keds.abc.conf with contents
+````
+<VirtualHost *:80>
+	ErrorLog /var/log/error.log
+	ServerName      dev.keds.abc
+      DocumentRoot /var/www/Projects/keds_project/
+      <Directory /var/www/Projects/keds_project/>
+             Options +Indexes +Includes +FollowSymLinks +MultiViews
+              AllowOverride All
+              Require all granted
+      </Directory>	
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+````
+  * Note : The Projects is the directory containing your web source 
+  * Run there commands line:
+````
+sudo gedit /etc/hosts
+````
+  * Add in below: 127.0.0.1	dev.keds.abc
+````
+sudo a2ensite dev.keds.abc.conf;
+sudo a2enmod rewrite;
+sudo service apache2 restart
+````
 ## Learn More About GraphQL in Magento 2
 
   * [GraphQL Developer Guide](https://devdocs.magento.com/guides/v2.4/graphql/index.html)
