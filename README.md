@@ -16,7 +16,6 @@
 </p>
 
 # [Magento 2.4.3](#) (Community Edition) by Son Nguyen
-````
 #### MYSQL
 ````
 UPDATE core_config_data SET value = 'http://local.skypremium.com/' WHERE path='web/unsecure/base_url' OR path='web/secure/base_url' OR path='web/unsecure/base_media_url' OR path='admin/url/custom'
